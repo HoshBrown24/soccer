@@ -1,0 +1,39 @@
+body {
+    background-image: linear-gradient(to bottom right, #1e3c72, #2a5298);
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    background-color: #142850;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .content, .video, .players, .tableau {
+    padding: 30px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1, h2 {
+    color: #ffcc00;
+  }
+  
+  a {
+    color: #ffdd57;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .soccer-ball {
+    width: 200px; /* Increased width */
+    height: auto; /* Ensures the aspect ratio is maintained */
+    margin-top: 10px;
+  }

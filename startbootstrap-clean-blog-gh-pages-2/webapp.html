@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      width: 80px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      background-color: #48bb78;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #38a169;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+
+    .win-counter {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Guess the Number (1–10)</h1>
+    <input type="number" id="guessInput" min="1" max="10">
+    <button onclick="checkGuess()">Guess</button>
+    <div class="message" id="message"></div>
+    <div class="win-counter" id="winCounter">Wins: 0</div>
+  </div>
+
+  <script>
+    let target = Math.floor(Math.random() * 10) + 1;
+    let wins = 0;
+
+    function checkGuess() {
+      const input = document.getElementById('guessInput');
+      const message = document.getElementById('message');
+      const winCounter = document.getElementById('winCounter');
+      const guess = Number(input.value);
+
+      if (guess < 1 || guess > 10 || isNaN(guess)) {
+        message.textContent = "Please enter a number between 1 and 10.";
+        return;
+      }
+
+      if (guess === target) {
+        wins++;
+        message.textContent = `🎉 Correct! The number was ${target}. Try a new one!`;
+        winCounter.textContent = `Wins: ${wins}`;
+        target = Math.floor(Math.random() * 10) + 1;
+        input.value = '';
+
+        if (wins >= 10) {
+          setTimeout(() => {
+            alert("🏆 Congrats! You reached 10 wins! Restarting game...");
+            wins = 0;
+            winCounter.textContent = "Wins: 0";
+            message.textContent = '';
+            target = Math.floor(Math.random() * 10) + 1;
+          }, 500);
+        }
+      } else {
+        message.textContent = guess < target ? "Too low! Try again." : "Too high! Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
